@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget Tracker</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>💰 Budget Tracker</h1>
+    <p class="sub">Track your income &amp; expenses — ICT Project</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Summary cards -->
+  <section class="cards">
+    <div class="card income">
+      <span class="label">Total Income</span>
+      <span class="value" id="totalIncome">Rs 0</span>
+    </div>
+    <div class="card expense">
+      <span class="label">Total Expenses</span>
+      <span class="value" id="totalExpense">Rs 0</span>
+    </div>
+    <div class="card balance">
+      <span class="label">Balance</span>
+      <span class="value" id="balance">Rs 0</span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <!-- Add transaction -->
+    <section class="panel">
+      <h2>Add Transaction</h2>
+      <form id="txForm">
+        <label>Type
+          <select id="txType">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </label>
+        <label>Category
+          <select id="txCategory"></select>
+        </label>
+        <label>Description
+          <input type="text" id="txDesc" placeholder="e.g. Grocery shopping" required>
+        </label>
+        <label>Amount (Rs)
+          <input type="number" id="txAmount" min="1" placeholder="e.g. 5000" required>
+        </label>
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <!-- Charts -->
+    <section class="panel">
+      <h2>Spending by Category</h2>
+      <canvas id="pieChart"></canvas>
+    </section>
+  </div>
+
+  <!-- Transaction list -->
+  <section class="panel">
+    <div class="list-head">
+      <h2>Transactions</h2>
+      <div class="filters">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="income">Income</button>
+        <button data-filter="expense">Expenses</button>
+        <button id="clearBtn" class="danger">Clear All</button>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Type</th><th>Category</th><th>Description</th><th>Amount</th><th></th></tr>
+      </thead>
+      <tbody id="txBody"></tbody>
+    </table>
+    <p id="emptyMsg" class="empty">No transactions yet. Add your first one above! 👆</p>
+  </section>
+
+</main>
+
+<footer>
+  <p>Made by <b>Ayesha Shoukat</b> — CS @ UET Narowal · Data is saved in your browser (localStorage)</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
